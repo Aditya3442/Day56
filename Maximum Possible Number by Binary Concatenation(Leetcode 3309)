@@ -1,0 +1,25 @@
+class Solution {
+    private static String[] rearrangeMax(int[] nums) {
+        String[] biNums = new String[nums.length];
+
+        for (int i=0; i<nums.length;i++) {
+            biNums[i] = Integer.toBinaryString(nums[i]);
+        }
+
+        Arrays.sort(biNums,(a, b)->(b + a).compareTo(a+b));
+        
+        return biNums;
+    }
+    public int maxGoodNumber(int[] nums) {
+         String[] sortBinary=rearrangeMax(nums);
+
+        StringBuilder concatBinary=new StringBuilder();
+        for (String bin:sortBinary) {
+            concatBinary.append(bin);
+        }
+
+        int res=Integer.parseInt(concatBinary.toString(),2);
+        
+        return res;
+    }
+}
